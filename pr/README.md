@@ -1,1 +1,1 @@
-Web payment request related websites which include web payment app and test merchant websites
+Web payment request related websites which include test web payment apps and merchant websites
