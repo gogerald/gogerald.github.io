@@ -1,6 +1,6 @@
 function testAlert() {
   console.log("testAlert");
-};
+}
 
 // Let's get permission!
 async function install() {
@@ -21,7 +21,7 @@ async function install() {
   }
   // Excellent, we got it! Let's now set up the user's cards.
   await methodRegistration(paymentManager);
-};
+}
 
 function methodRegistration({ methods }) {
   // Multiple icons in a single bundle
@@ -54,4 +54,4 @@ function methodRegistration({ methods }) {
     }),
   ];
   return Promise.all(promisesToAdd);
-};
+}
