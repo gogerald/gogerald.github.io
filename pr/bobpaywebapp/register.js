@@ -34,7 +34,7 @@ function methodRegistration({ methods }) {
     }),
     methods.set("bobpay", {
       name: "My Bob Pay Account: john@example.com",
-      methods: ["https://bobpay.com/"],
+      methods: ["https://emerald-eon.appspot.com/bobpay"],
       image: "/images/bobpay.png",
       icons: ["/images/bobpay.png"],
     }),
