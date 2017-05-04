@@ -1,7 +1,7 @@
 async function install() {
   const { registration } =
     await navigator.serviceWorker.register('bobpay.js');
-  if (!paymentManager) {
+  if (!registration.paymentManager) {
     return; // not supported, so bail out.
   }
   const state =
