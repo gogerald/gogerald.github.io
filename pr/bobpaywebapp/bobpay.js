@@ -111,3 +111,7 @@ addEventListener("canmakepayment", async ev => {
   }
   ev.canMakePayment(canDoIt);
 });
+
+function canProcessPaymentFor(key, value) {
+  return true;
+}
