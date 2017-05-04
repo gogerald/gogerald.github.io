@@ -99,19 +99,15 @@ addEventListener("canmakepayment", async ev => {
   const { paymentMethods } = registration.paymentManager;
   let canDoIt = true;
   // Query the user's payment methods, to see if we have the requested ones
-  const supportedMethods = ev.methods.map(
-    async key => ({ key, value: await paymentMethods.get(key) })
-  );
+  //const supportedMethods = ev.methods.map(
+  //  async key => ({ key, value: await paymentMethods.get(key) })
+ // );
   // Check that we support all the requested methods
-  for await (const { key, value } of supportedMethods) {
-    if (!value || !canProcessPaymentFor(key, value)) {
-      canDoIt = false;
-      break;
-    }
-  }
+  //for await (const { key, value } of supportedMethods) {
+   // if (!value || !canProcessPaymentFor(key, value)) {
+  //    canDoIt = false;
+  //    break;
+  //  }
+  //}
   ev.canMakePayment(canDoIt);
 });
-
-function canProcessPaymentFor(key, value) {
-  return true;
-}
