@@ -1,3 +1,7 @@
+function testAlert() {
+  console.log("testAlert");
+}
+
 // Let's get permission!
 async function install() {
   const { paymentManager } = await navigator.serviceWorker.register('/bobpay.js');
