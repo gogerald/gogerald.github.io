@@ -1,6 +1,6 @@
 function testAlert() {
   console.log("testAlert");
-}
+};
 
 // Let's get permission!
 async function install() {
