@@ -1,113 +1,20 @@
-"use strict";
-// User interface for payment flow - we could also pull this from Cache API
-const paymentsUI = new URL("/pay-for-something", location).href;
+self.addEventListener('paymentrequest', function(e) {
+  e.respondWith(new Promise(function(resolve, reject) {
+    self.addEventListener('message', listener = function(e) {
+      self.removeEventListener('message', listener);
+      if (e.data.hasOwnProperty('name')) {
+        reject(e.data);
+      } else {
+        resolve(e.data);
+      }
+    });
 
-// Fires when the merchant calls PaymentRequest.show()
-addEventListener("paymentrequest", ev => {
-  ev.respondWith(createResponseAndProcessPayment(ev));
-});
-
-// Attempt to process the request for payment
-async function createResponseAndProcessPayment(ev) {
-  const {request, paymentRequestID} = ev;
-  const responseId = paymentRequestID || generateId();
-  // Security check, but without leaking URL information to payment
-  // processor.
-  const isAllowed = await verifyDomain(ev.domain);
-  if (!isAllowed) {
-    console.error(`The domain ${ev.domain} is not allowed to request payment!`);
-    const response = new sPaymentResponse(responseId);
-    await response.complete("fail");
-    return response;
-  }
-  // Gather email, name, phone, shipping address, etc. if requested
-  const fields = {};
-  if (request.requestedFields.length) {
-    Object.assign(fields, await lookupUserInfo(request.requestedFields));
-  }
-  const creditCardDetails = await generateCreditCard();
-  const init = Object.assign({}, {fields}, {details: creditCardDetails});
-  // PaymentResponse can now be constructed and returned.
-  const response = new PaymentResponse(responseId, "basic-card#visa", init);
-  ev.waitUntil(coordinatePurchaseWithUser(ev, response));
-  return response;
-}
-
-// Handle back and forth between end-user and merchant
-async function coordinatePurchaseWithUser(ev, response) {
-  const {request} = ev;
-  // Handle the merchant calling PaymentRequest.abort()
-  request.onabort = async() => {
-    if (!client) {
-      return;
-    }
-    // should call window.close();
-    await promisedPostMessage(client, {action: "close"});
-  };
-  const client = await ev.openClientWindow(paymentsUI);
-  // browser provided payment-flow window (overlay, sheet, whatever)
-  const msg = {
-    action: "showItems", // Let's see if the user wants to pay for these things
-    displayItems: request.displayItems,
-    total: request.total,
-  };
-  const result = await promisedPostMessage(client, msg);
-  try {
-    await coordinateCommunications(result, response, client);
-  } catch (err) {
-    response.complete("fail");
-  }
-  // The payment flow ends once payment is complete
-  const howDidItComplete = await response.isComplete;
-  // Payment handlers can track if payments are succeeding per origin
-  analytics(ev.origin, howDidItComplete);
-  return;
-}
-
-async function coordinateCommunications(result, response, client) {
-  let msg;
-  switch (result.action) {
-  case "buy-it":
-    break; // Awesome, we are done!
-  case "updateShipping": {
-    const merchantResult = await response.updateShippingAddress(result.newShippingAddress);
-    if (merchantResult) {
-      msg = Object.assign({action: "invalidShippingAddress"}, merchantResult);
-    }
-    break;
-  }
-  case "updateShippingOption": {
-    const merchantResult = await response.updateShippingOption(result.newShippingOptionId);
-    if (merchantResult) {
-      msg = Object.assign({action: "invalidShippingOption"}, merchantResult);
-    }
-    break;
-  }
-  case "abort":
-    throw new Error("User doesn't want this!");
-  default:
-    throw new Error("Unknown action");
-  }
-  if (msg) {
-    // recursively repeat until the both parties and user says "buy-it".
-    const endUserSays = await promisedPostMessage(client, msg);
-    await coordinateCommunications(endUserSays, response, client);
-  }
-}
-
-addEventListener("canmakepayment", async ev => {
-  const { paymentMethods } = registration.paymentManager;
-  let canDoIt = true;
-  // Query the user's payment methods, to see if we have the requested ones
-  const loopUp = ev.methods.map(
-    async key => ({ key, value: await paymentMethods.get(key) })
-  );
-  // Check that we support all the requested methods
-  for await (const { key, value } of loopUp) {
-    if (!value || !canProcessPaymentFor(key, value)) {
-      canDoIt = false;
-      break;
-    }
-  }
-  ev.canMakePayment(canDoIt);
+    e.openWindow("https://gogerald.github.io/pr/simple-payment-handler-window")
+    .then(function(windowClient) {
+      windowClient.postMessage(e.data);
+    })
+    .catch(function(err) {
+      reject(err);
+    });
+  }));
 });
