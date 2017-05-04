@@ -1,6 +1,6 @@
 // Let's get permission!
 async function install() {
-  const { paymentManager } = await navigator.serviceWorker.register('/bobpay.js');
+  const { paymentManager } = await navigator.serviceWorker.register('bobpay.js');
   if (!paymentManager) {
     return; // not supported, so bail out.
   }
@@ -20,33 +20,23 @@ async function install() {
 }
 
 function methodRegistration({ methods }) {
-  // Multiple icons in a single bundle
-  const visaIcons = {
-    src: "/images/visa.ico",
-    sizes: "16x16 32x32 64x64 150x200",
-    type: "image/vnd.microsoft.icon",
-  };
   // These would normally come out of a database
   const promisesToAdd = [
     methods.set("visa-4756", {
       name: "Visa ending ****4756",
       methods: ["basic-card"],
-      icons: [visaIcons],
+      icons: ["/images/visa.png"],
     }),
     methods.set("visa-6789", {
       name: "Visa ending ***6789",
       methods: ["basic-card"],
-      icons: [visaIcons],
+      icons: ["/images/visa.png"],
     }),
     methods.set("bobpay", {
       name: "My Bob Pay Account: john@example.com",
       methods: ["https://bobpay.com/"],
-      image: "/images/bobpay_large.png",
-      icons: [
-        { src: "/images/bob_16.png", sizes: "16x16" },
-        { src: "/images/bob_32.png", sizes: "32x32" },
-        { src: "/images/bob_64.png", sizes: "64x64" },
-      ],
+      image: "/images/bobpay.png",
+      icons: ["/images/bobpay.png"],
     }),
   ];
   return Promise.all(promisesToAdd);
