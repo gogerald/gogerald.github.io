@@ -1,6 +1,6 @@
 // Let's get permission!
-window.addEventListerner("DOMContentLoaded", async() => {
-  const { paymentManager } = await navigator.serviceWorker.register('/sw.js');
+async function install() {
+  const { paymentManager } = await navigator.serviceWorker.register('/bobpay.js');
   if (!paymentManager) {
     return; // not supported, so bail out.
   }
@@ -17,7 +17,7 @@ window.addEventListerner("DOMContentLoaded", async() => {
   }
   // Excellent, we got it! Let's now set up the user's cards.
   await methodRegistration(paymentManager);
-}, { once: true });
+};
 
 function methodRegistration({ methods }) {
   // Multiple icons in a single bundle
