@@ -43,21 +43,5 @@ function addInstruments(registration) {
       }),
     ];
 
-    return Promise.all(instrumentPromises).then(() => {
-      registration.paymentManager.wallets.set(
-        "12a1b7e5-16c0-4c09-a312-9b191d08517b",
-        {
-          name: "Acme Bank Personal Accounts",
-          icons: [
-                   { src: "images/visa.png",
-                     sizes: "48x48"
-                   }
-                 ],
-          instrumentKeys: [
-              "dc2de27a-ca5e-4fbd-883e-b6ded6c69d4f",
-              "c8126178-3bba-4d09-8f00-0771bcfd3b11",
-              "new-card"
-            ]
-        });
-     });
+    return Promise.all(instrumentPromises);
   };
