@@ -1,7 +1,7 @@
-async function install() {
+window.addEventListerner("DOMContentLoaded", async() => {
   const { registration } =
     await navigator.serviceWorker.register('bobpay.js');
-  if (!registration.paymentManager) {
+  if (!paymentManager) {
     return; // not supported, so bail out.
   }
   const state =
@@ -20,7 +20,7 @@ async function install() {
   }
   // Excellent, we got it! Let's now set up the user's cards.
   await addInstruments(registration);
-}
+}, { once: true });
 
 function addInstruments(registration) {
   const instrumentPromises = [
