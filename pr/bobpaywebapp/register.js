@@ -1,3 +1,4 @@
+function install() {
 window.addEventListerner("DOMContentLoaded", async() => {
   const { registration } =
     await navigator.serviceWorker.register('bobpay.js');
@@ -21,6 +22,7 @@ window.addEventListerner("DOMContentLoaded", async() => {
   // Excellent, we got it! Let's now set up the user's cards.
   await addInstruments(registration);
 }, { once: true });
+}
 
 function addInstruments(registration) {
   const instrumentPromises = [
