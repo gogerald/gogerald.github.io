@@ -1,27 +1,12 @@
 function install() {
-window.addEventListerner("DOMContentLoaded", async() => {
-  const { registration } =
-    await navigator.serviceWorker.register('bobpay.js');
-  if (!paymentManager) {
-    return; // not supported, so bail out.
-  }
-  const state =
-    await navigator.permissions.query({ name: "paymenthandler" });
-
-  switch (state) {
-    case "denied":
+  navigator.serviceWorker.register('bobpay.js').then(function(registration) {
+    if(!registration.paymentManager) {
       return;
-    case "prompt":
-      // Note -- it's not clear how this should work yet; see Issue 94.
-      const result = await registration.paymentManager.requestPermission();
-      if (result === "denied") {
-        return;
-      }
-      break;
-  }
-  // Excellent, we got it! Let's now set up the user's cards.
-  await addInstruments(registration);
-}, { once: true });
+    }
+    addInstruments(registration);
+  }).catch(function(error) {
+    alert("error: " + error);
+  });
 }
 
 function addInstruments(registration) {
