@@ -1,4 +1,12 @@
-function install() {
+async function install() {
+  const registration = await navigator.serviceWorker.register('bobpay.js');
+  if(!registration.paymentManager) {
+    return;
+  }
+  addInstruments(registration);
+}
+
+function install2() {
   navigator.serviceWorker.register('bobpay.js').then(function(registration) {
     if(!registration.paymentManager) {
       return;
