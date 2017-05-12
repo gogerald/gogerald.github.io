@@ -3,16 +3,17 @@
 <html lang="en">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-
+  </head>  
+  
   <body>
-    <header>
-      <h1> Service Worker Sample: Basic Registration </h1>
-    </header>
-
-    <div class="output">
-      <p>service worker registration: <strong id="status"></strong></p>
-    </div>
+    <center>
+      <header>
+        <h1> Service worker registration </h1>
+      </header>
+      
+      <button type="button" style="background-color:powderblue;" onclick="install()">Register service worker</button>
+    </center>
+    
 
     <script>
       if ('serviceWorker' in navigator) {
