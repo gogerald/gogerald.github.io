@@ -3,18 +3,15 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Service Worker Sample: Basic Registration</title>
   </head>
 
   <body>
-
     <header>
       <h1> Service Worker Sample: Basic Registration </h1>
-    </header>
-    
+      </header>
+
     <div class="output">
       <p>service worker registration: <strong id="status"></strong></p>
     </div>
