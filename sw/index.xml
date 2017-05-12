@@ -8,31 +8,10 @@
   <body>
     <center>
       <header>
-        <h1> Service worker registration </h1>
+        <h1> Bobpay web app registration page </h1>
       </header>
       
-      <button type="button" style="background-color:powderblue;" onclick="install()">Register service worker</button>
     </center>
     
-
-    <script>
-      function install() {
-        if ('serviceWorker' in navigator) {
-          // Override the default scope of '/' with './', so that the registration applies
-          // to the current directory and everything underneath it.
-          navigator.serviceWorker.register('service-worker.js', {scope: './'}).then(function(registration) {
-            // At this point, registration has taken place.
-            // The service worker will not handle requests until this page and any
-            // other instances of this page (in other tabs, etc.) have been
-            // closed/reloaded.
-          }).catch(function(error) {
-            // Something went wrong during registration. The service-worker.js file
-            // might be unavailable or contain a syntax error.
-          });
-        } else {
-          console.log('Service worker is not supported');
-        }
-      }
-    </script>
   </body>
 </html>
