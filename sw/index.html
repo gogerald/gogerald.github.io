@@ -12,6 +12,7 @@
       </header>
       
       <button type="button" style="background-color:powderblue;" onclick="install()">Register service worker</button>
+      <button id="show-notification-btn">Show notification</button>
     </center>
     
 
@@ -34,5 +35,22 @@
         }
       }
     </script>
+
+    <script>
+    navigator.serviceWorker.register('serviceworker.js');
+    document.getElementById('show-notification-btn').onclick = function() {
+        Notification.requestPermission(function(result) {
+            // result = 'allowed' / 'denied' / 'default'
+            if (result !== 'denied') {
+                navigator.serviceWorker.ready.then(function(registration) {
+                    // Show notification. If the user clicks on this
+                    // notification, then "notificationclick" is fired.
+                    registration.showNotification('Test');
+                });
+            }
+        });
+    }
+    </script>
+
   </body>
 </html>
