@@ -17,5 +17,5 @@ clients.matchAll({
       if (clients.openWindow) {
         return clients.openWindow('https://gogerald.github.io/pr/bobpaywebapp');  
       }
-    }
+    });
 });
