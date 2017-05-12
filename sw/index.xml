@@ -10,8 +10,11 @@
   </head>
 
   <body>
-    <h1>Service Worker Sample: Basic Registration</h1>
 
+    <header>
+      <h1> Service Worker Sample: Basic Registration </h1>
+    </header>
+    
     <div class="output">
       <p>service worker registration: <strong id="status"></strong></p>
     </div>
