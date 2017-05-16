@@ -27,4 +27,5 @@ self.addEventListener('notificationclick', function(event) {
 
 self.addEventListener('message', function(event){
     console.log("SW Received Message: " + event.data);
+    event.ports[0].postMessage("SW Says 'Hello back!'");
 });
