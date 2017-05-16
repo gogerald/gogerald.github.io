@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>  
+  
+  <body>
+    <center>
+      <header>
+        <h1> Bobpay web app window </h1>
+      </header>
+      
+      <button type="button" style="background-color:powderblue;" onclick="postMessage()">post message</button>
+    </center>
+
+    <script>
+      function postMessage() {
+        navigator.serviceWorker.controller.postMessage("Hello from 'Bobpay web app window'");
+      }
+    </script>    
+  </body>
+</html>

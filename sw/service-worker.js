@@ -18,9 +18,13 @@ self.addEventListener('notificationclick', function(event) {
     }).then(function() {
         // return the promise returned by openWindow, just in case.
         // Opening any origin only works in Chrome 43+.
-        return clients.openWindow('https://gogerald.github.io/pr/bobpaywebapp');
+        return clients.openWindow('https://gogerald.github.io/sw/bobpay');
     });
 
     // Now wait for the promise to keep the permission alive.
     event.waitUntil(promise);
+});
+
+self.addEventListener('message', function(event){
+    console.log("SW Received Message: " + event.data);
 });
