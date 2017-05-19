@@ -17,12 +17,11 @@
 
     <script>
         function pay() {
-          var details = {
-            id:"458789544454455114"
-          }
           var paymentAppResponse = {
             methodName: "https://emerald-eon.appspot.com/bobpay",
-            details: details
+            details: {
+              id:"458789544454455114"
+            }
           };
           navigator.serviceWorker.controller.postMessage(paymentAppResponse);
           window.close();
