@@ -11,16 +11,12 @@
         <h1> Bobpay web app pay page </h1>
       </header>
 
-      <button id="pay" type="button">Pay</button>
-      <button id="cancel" type="button">Cancel</button>
+      <button id="pay" type="button" onclick="pay()">Pay</button>
+      <button id="cancel" type="button" onclick="cancel()">Cancel</button>
     </center>
 
     <script>
-      window.addEventListener("message", function(e)) {
-        var payButton = document.getElementById("pay");
-        var cancelButton = document.getElementById("cancel");
-
-        payButton.onclick = function() {
+        function pay() {
           var details = {
             id:"458789544454455114"
           }
@@ -28,19 +24,17 @@
             methodName: "https://emerald-eon.appspot.com/bobpay",
             details: details
           };
-
-          e.ports[0].postMessage(paymentAppResponse);
+          navigator.serviceWorker.controller.postMessage(paymentAppResponse);
           window.close();
         }
 
-        cancelButton.onclick = function() {
+        function cancel() {
           var rejectReason = {
             reason: "user cancel"
           }
-          e.ports[0].postMessage(rejectReason);
+          navigator.serviceWorker.controller.postMessage(rejectReason);
           window.close();
         }
-      }
     </script>
   </body>
 </html>
