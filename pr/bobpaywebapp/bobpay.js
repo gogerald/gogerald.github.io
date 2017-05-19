@@ -10,7 +10,7 @@ self.addEventListener('paymentrequest', function(e) {
       }
     });
 
-    e.openWindow("https://gogerald.github.io/pr/simple-payment-handler-window.html")
+    e.openWindow("https://gogerald.github.io/pr/pay")
     .then(function(windowClient) {
       windowClient.postMessage(e.data);
     })
