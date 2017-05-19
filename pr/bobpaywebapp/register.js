@@ -12,34 +12,11 @@ function install() {
 function addInstruments(registration) {
   const instrumentPromises = [
     registration.paymentManager.instruments.set(
-      "dc2de27a-ca5e-4fbd-883e-b6ded6c69d4f",
-      {
-        name: "Visa ending ****4756",
-        enabledMethods: ["basic-card"],
-        capabilities: {
-          supportedNetworks: ['visa'],
-          supportedTypes: ['credit']
-        }
-      }),
-
-    registration.paymentManager.instruments.set(
       "c8126178-3bba-4d09-8f00-0771bcfd3b11",
       {
         name: "My Bob Pay Account: john@example.com",
         enabledMethods: ["https://emerald-eon.appspot.com/bobpay"],
         icons: ["images/bobpay.png"]
-      }),
-
-    registration.paymentManager.instruments.set(
-      "new-card",
-      {
-        name: "Add new credit/debit card to ExampleApp",
-        enabledMethods: ["basic-card"],
-        capabilities: {
-          supportedNetworks:
-            ['visa','mastercard','amex','discover'],
-          supportedTypes: ['credit','debit','prepaid']
-        }
       }),
     ];
 

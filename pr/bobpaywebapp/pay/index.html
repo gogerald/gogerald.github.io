@@ -1,40 +1,46 @@
 <!DOCTYPE html>
 
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
 
-<form id="form">
-<table>
-  <tr><th>Cardholder Name:</th><td><input name="cardholderName"></td></tr>
-  <tr><th>Card Number:</th><td><input name="cardNumber"></td></tr>
-  <tr><th>Expiration Month:</th><td><input name="expiryMonth"></td></tr>
-  <tr><th>Expiration Year:</th><td><input name="expiryYear"></td></tr>
-  <tr><th>Security Code:</th><td><input name="cardSecurityCode"></td></tr>
-  <tr><th></th><td><input type="submit" value="Pay"></td></tr>
-</table>
-</form>
+  <body>
+    <center>
+      <header>
+        <h1> Bobpay web app registration page </h1>
+      </header>
 
-<script>
-window.addEventListener("message", function(e) {
-  var form = document.getElementById("form");
-  /* Note: message sent from payment app is available in e.data */
-  form.onsubmit = function() {
-    /* See https://w3c.github.io/webpayments-methods-card/#basiccardresponse */
-    var basicCardResponse = {};
-    [ "cardholderName", "cardNumber","expiryMonth","expiryYear","cardSecurityCode"]
-    .forEach(function(field) {
-      basicCardResponse[field] = form.elements[field].value;
-    });
+      <button id="pay" type="button">Pay</button>
+      <button id="cancel" type="button">Cancel</button>
+    </center>
 
-    /* See https://w3c.github.io/webpayments-payment-apps-api/#sec-app-response */
-    var paymentAppResponse = {
-      methodName: "basic-card",
-      details: details
-    };
+    <script>
+      window.addEventListener("message", function(e)) {
+        var payButton = document.getElementById("pay");
+        var cancelButton = document.getElementById("cancel");
 
-    e.source.postMessage(paymentAppResponse);
-    window.close();
-  }
-});
-</script>
+        payButton.onclick = function() {
+          var details = {
+            id:"458789544454455114"
+          }
+          var paymentAppResponse = {
+            methodName: "https://emerald-eon.appspot.com/bobpay",
+            details: details
+          };
+
+          e.ports[0].postMessage(paymentAppResponse);
+          window.close();
+        }
+
+        cancelButton.onclick = function() {
+          var rejectReason = {
+            reason: "user cancel"
+          }
+          e.ports[0].postMessage(rejectReason);
+          window.close();
+        }
+      }
+    </script>
+  </body>
+</html>
