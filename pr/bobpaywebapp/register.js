@@ -14,7 +14,7 @@ function addInstruments(registration) {
     registration.paymentManager.instruments.set(
       "c8126178-3bba-4d09-8f00-0771bcfd3b11",
       {
-        name: "My Bob Pay Account: john@example.com",
+        name: "My Bob Pay Account: gogerald@google.com",
         enabledMethods: ["https://emerald-eon.appspot.com/bobpay"],
         icons: ["images/bobpay.png"]
       }),

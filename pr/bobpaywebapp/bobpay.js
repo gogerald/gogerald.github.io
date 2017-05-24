@@ -11,7 +11,6 @@ self.addEventListener('paymentrequest', function(e) {
     };
 
     self.addEventListener('message', listener = function(e) {
-
       if (e.data == "payment_app_window_ready") {
         window_ready = true;
         maybeSendPaymentRequest();

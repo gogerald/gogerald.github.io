@@ -25,7 +25,6 @@
       received_payment_request = true;
       payment_request_client = e.source;
     });
-
     navigator.serviceWorker.controller.postMessage('payment_app_window_ready');
 
     function pay() {
