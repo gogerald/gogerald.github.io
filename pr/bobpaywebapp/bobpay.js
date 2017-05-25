@@ -25,8 +25,8 @@ self.addEventListener('paymentrequest', function(e) {
       }
     });
 
-    //e.openWindow("https://gogerald.github.io/pr/bobpaywebapp/pay")
-   e.openWindow("https://www.google.ca/")
+    e.openWindow("https://gogerald.github.io/pr/bobpaywebapp/pay")
+   //e.openWindow("https://www.google.ca/")
     .then(window_client => {
       payment_app_window = window_client;
       maybeSendPaymentRequest();
