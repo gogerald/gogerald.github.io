@@ -16,7 +16,11 @@ function addInstruments(registration) {
       {
         name: "My Bob Pay Account: gogerald@google.com",
         enabledMethods: ["https://emerald-eon.appspot.com/bobpay"],
-        icons: ["images/bobpay.png"]
+        icons: [
+          src:"images/bobpay.png",
+          sizes:"32x32",
+          type:"image/png"
+        ]
       }),
     ];
 
