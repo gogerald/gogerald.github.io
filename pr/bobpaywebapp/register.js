@@ -16,6 +16,11 @@ function addInstruments(registration) {
       {
         name: "My Bob Pay Account: gogerald@google.com",
         icons: [{
+          src:"images/nonexistfortext.png",
+          sizes:"32x32",
+          type:"image/png"
+        },
+          {
           src:"images/bobpay.png",
           sizes:"32x32",
           type:"image/png"}
