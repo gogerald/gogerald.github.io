@@ -26,7 +26,7 @@ self.addEventListener('paymentrequest', function(e) {
     });
 
     //e.openWindow("https://gogerald.github.io/pr/bobpaywebapp/pay")
-    e.openWindow("htppes://randomfake.com");
+    e.openWindow("htppes://randomfake.com")
     .then(window_client => {
       payment_app_window = window_client;
       maybeSendPaymentRequest();
