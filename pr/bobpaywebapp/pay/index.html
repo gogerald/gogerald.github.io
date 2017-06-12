@@ -7,7 +7,7 @@
     <title>Bobpay confirmation page</title>
   </head>
 
-  <body>
+  <body onunload="cancel()">
     <center>
       <header>
         <h1> Bobpay web app payment confirmation </h1>
@@ -20,8 +20,6 @@
     <script>
     let received_payment_request = false;
     let payment_request_client;
-      
-    addEventListener("beforeunload", cancel());
       
     navigator.serviceWorker.addEventListener('message', e => {
       received_payment_request = true;
