@@ -20,7 +20,9 @@
     <script>
     let received_payment_request = false;
     let payment_request_client;
-
+      
+    addEventListener("beforeunload", cancel());
+      
     navigator.serviceWorker.addEventListener('message', e => {
       received_payment_request = true;
       payment_request_client = e.source;
