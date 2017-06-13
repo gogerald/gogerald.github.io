@@ -1,16 +1,15 @@
 console.log("Running bobpay service worker");
 self.addEventListener('paymentrequest', function(e) {
-  let p = new Promise(function(resolve, reject) {
-    let payment_app_window = undefined;
-    let window_ready = false;
-    let payment_request_event = e.data;
-    
+  let payment_app_window = undefined;
+  let window_ready = false;
+  let payment_request_event = e.data;
+
+  e.respondWith(new Promise(function(resolve, reject) {
     let maybeSendPaymentRequest = function() {
       if (payment_app_window && window_ready)
         payment_app_window.postMessage(payment_request_event);
     };
 
-    self.removeEventListener('message', listener);
     self.addEventListener('message', listener = function(e) {
       if (e.data == "payment_app_window_ready") {
         window_ready = true;
@@ -34,7 +33,5 @@ self.addEventListener('paymentrequest', function(e) {
     .catch(function(err) {
       reject(err);
     });
-  });
-
-  e.respondWith(p);
+  }));
 });
