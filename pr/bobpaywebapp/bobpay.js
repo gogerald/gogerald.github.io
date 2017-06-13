@@ -1,14 +1,10 @@
 console.log("Running bobpay service worker");
-let payment_app_window = undefined;
 self.addEventListener('paymentrequest', function(e) {
-  if(payment_app_window != undefined) {
-    reject("");
-  }
-
-  let window_ready = false;
-  let payment_request_event = e.data;
-
-  e.respondWith(new Promise(function(resolve, reject) {
+  let p = new Promise(function(resolve, reject) {
+    let payment_app_window = undefined;
+    let window_ready = false;
+    let payment_request_event = e.data;
+    
     let maybeSendPaymentRequest = function() {
       if (payment_app_window && window_ready)
         payment_app_window.postMessage(payment_request_event);
@@ -27,7 +23,6 @@ self.addEventListener('paymentrequest', function(e) {
       } else {
         reject(e.data);
       }
-      payment_app_window = undefined;
     });
 
     e.openWindow("https://gogerald.github.io/pr/bobpaywebapp/pay")
@@ -38,5 +33,7 @@ self.addEventListener('paymentrequest', function(e) {
     .catch(function(err) {
       reject(err);
     });
-  }));
+  });
+
+  e.respondWith(p);
 });
