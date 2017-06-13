@@ -10,6 +10,7 @@ self.addEventListener('paymentrequest', function(e) {
         payment_app_window.postMessage(payment_request_event);
     };
 
+    self.removeEventListener('message', listener);
     self.addEventListener('message', listener = function(e) {
       if (e.data == "payment_app_window_ready") {
         window_ready = true;
@@ -19,9 +20,9 @@ self.addEventListener('paymentrequest', function(e) {
 
       self.removeEventListener('message', listener);
       if(e.data.methodName) {
-        p.resolve(e.data);
+        resolve(e.data);
       } else {
-        p.reject(e.data);
+        reject(e.data);
       }
     });
 
@@ -31,7 +32,7 @@ self.addEventListener('paymentrequest', function(e) {
       maybeSendPaymentRequest();
     })
     .catch(function(err) {
-      p.reject(err);
+      reject(err);
     });
   });
 
