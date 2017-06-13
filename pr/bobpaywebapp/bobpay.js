@@ -1,7 +1,7 @@
 console.log("Running bobpay service worker");
-let payment_app_window = undefined;
+let payment_app_window = null;
 self.addEventListener('paymentrequest', function(e) {
-  if(window_client != undefined) {
+  if(window_client != null) {
     reject("");
   }
 
@@ -27,7 +27,7 @@ self.addEventListener('paymentrequest', function(e) {
       } else {
         reject(e.data);
       }
-      window_client = undefined;
+      window_client = null;
     });
 
     e.openWindow("https://gogerald.github.io/pr/bobpaywebapp/pay")
