@@ -29,6 +29,13 @@ self.addEventListener('paymentrequest', function(e) {
     .then(window_client => {
       payment_app_window = window_client;
       maybeSendPaymentRequest();
+
+      let timer = setTimeout(function(){
+        if(payment_app_window.visibilityState != 'visible') {
+          reject("");
+          clearTimeout(timer);
+        }
+      }, 100);
     })
     .catch(function(err) {
       reject(err);
