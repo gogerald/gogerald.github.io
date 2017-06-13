@@ -19,9 +19,9 @@ self.addEventListener('paymentrequest', function(e) {
 
       self.removeEventListener('message', listener);
       if(e.data.methodName) {
-        resolve(e.data);
+        p.resolve(e.data);
       } else {
-        reject(e.data);
+        p.reject(e.data);
       }
     });
 
@@ -31,7 +31,7 @@ self.addEventListener('paymentrequest', function(e) {
       maybeSendPaymentRequest();
     })
     .catch(function(err) {
-      reject(err);
+      p.reject(err);
     });
   });
 
