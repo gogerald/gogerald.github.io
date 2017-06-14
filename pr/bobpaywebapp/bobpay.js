@@ -17,7 +17,7 @@ self.addEventListener('paymentrequest', function(e) {
   })
   .catch(function(err) {
     resolver.reject(err);
-  }
+  })
 });
 
 self.addEventListener('message', listener = function(e) {
