@@ -20,12 +20,10 @@
     <script>
     let received_payment_request = false;
     let payment_request_client;
-    let resolver;
           
     navigator.serviceWorker.addEventListener('message', e => {
       received_payment_request = true;
       payment_request_client = e.source;
-      resolver = e.data.resolver;
     });
     navigator.serviceWorker.controller.postMessage('payment_app_window_ready');
 
@@ -36,8 +34,7 @@
         methodName: "https://emerald-eon.appspot.com/bobpay",
         details: {
           id: "123456"
-        },
-        resolver: resolver
+        }
       };
 
       payment_request_client.postMessage(paymentAppResponse);
@@ -47,12 +44,7 @@
     function cancel() {
       if(!received_payment_request) return;
 
-      var paymentAppResponse = {
-        errorMessage: "The payment request is cancelled by user",
-        resolver: resolver
-      };
-
-      payment_request_client.postMessage(paymentAppResponse);
+      payment_request_client.postMessage("The payment request is cancelled by user");
       window.close();
     }
     </script>
