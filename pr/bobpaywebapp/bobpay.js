@@ -34,8 +34,17 @@ self.addEventListener('message', listener = function(e) {
 
 function maybeSendPaymentRequest() {
     if (window_ready) {
-      clients.matchAll().then(function(clientList) {
+      // Note that we do not use the returned window_client through openWindow since
+      // it might changed by refreshing the opened page.
+      // Refer https://www.w3.org/TR/service-workers-1/#clients-getall
+      let options = {
+        includeUncontrolled: false,
+        type: 'window'
+      };
+      clients.matchAll(options).then(function(clientList) {
         for(var i = 0; i < clientList.length; i++) {
+          // We may do additional communications or checks to make sure we are using 
+          // the right page.
           clientList[i].postMessage(payment_request_event);
         }
       });
