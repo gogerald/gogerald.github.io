@@ -52,7 +52,7 @@ function sendPaymentRequest() {
       //   'topLevelOrigin': payment_request_event.topLevelOrigin,
       //   'total': payment_request_event.total
       // };
-      clientList[i].postMessage(payment_request_event.total);
+      clientList[i].postMessage(payment_request_event);
     }
   });
 }
