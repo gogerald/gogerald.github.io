@@ -1,5 +1,4 @@
 console.log("Running bobpay service worker");
-let window_ready = false;
 let payment_request_event = undefined;
 let payment_request_resolver = undefined;
 
@@ -10,9 +9,6 @@ self.addEventListener('paymentrequest', function(e) {
   e.respondWith(payment_request_resolver.promise);
 
   e.openWindow("https://gogerald.github.io/pr/bobpaywebapp/pay")
-  .then(window_client => {
-    maybeSendPaymentRequest();
-  })
   .catch(function(err) {
     payment_request_resolver.reject(err);
   })
@@ -20,8 +16,7 @@ self.addEventListener('paymentrequest', function(e) {
 
 self.addEventListener('message', listener = function(e) {
   if (e.data == "payment_app_window_ready") {
-    window_ready = true;
-    maybeSendPaymentRequest();
+    sendPaymentRequest();
     return;
   }
 
@@ -32,23 +27,34 @@ self.addEventListener('message', listener = function(e) {
   }
 });
 
-function maybeSendPaymentRequest() {
-    if (window_ready) {
-      // Note that we do not use the returned window_client through openWindow since
-      // it might changed by refreshing the opened page.
-      // Refer https://www.w3.org/TR/service-workers-1/#clients-getall
-      let options = {
-        includeUncontrolled: false,
-        type: 'window'
-      };
-      clients.matchAll(options).then(function(clientList) {
-        for(var i = 0; i < clientList.length; i++) {
-          // We may do additional communications or checks to make sure we are using 
-          // the right page.
-          clientList[i].postMessage(payment_request_event);
-        }
-      });
+function sendPaymentRequest() {
+  // Note that we do not use the returned window_client through openWindow since
+  // it might changed by refreshing the opened page.
+  // Refer to https://www.w3.org/TR/service-workers-1/#clients-getall
+  let options = {
+    includeUncontrolled: false,
+    type: 'window'
+  };
+
+  clients.matchAll(options).then(function(clientList) {
+    for(var i = 0; i < clientList.length; i++) {
+      // Might do additional communications or checks to make sure we are using 
+      // the right page.
+
+      // Copy the relevant data from the paymentrequestevent to
+      // send to the payment app confirmation page.
+      // TODO(madmath): This doesn't work.
+      // var paymentRequest = {
+      //   'methodData': payment_request_event.methodData,
+      //   'modifiers': payment_request_event.modifiers,
+      //   'paymentRequestId': payment_request_event.paymentRequestId,
+      //   'paymentRequestOrigin': payment_request_event.paymentRequestOrigin,
+      //   'topLevelOrigin': payment_request_event.topLevelOrigin,
+      //   'total': payment_request_event.total
+      // };
+      clientList[i].postMessage(payment_request_event.total);
     }
+  });
 }
 
 function PromiseResolver() {
