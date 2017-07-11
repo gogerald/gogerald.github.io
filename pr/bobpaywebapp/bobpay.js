@@ -8,7 +8,10 @@ self.addEventListener('paymentrequest', function(e) {
   payment_request_resolver = new PromiseResolver();
   e.respondWith(payment_request_resolver.promise);
   
-  setTimeout(handleOpenWindow(e), 30000);
+  e.openWindow("https://gogerald.github.io/pr/bobpaywebapp/pay")
+    .catch(function(err) {
+    payment_request_resolver.reject(err);
+  })
 });
 
 self.addEventListener('message', listener = function(e) {
@@ -23,13 +26,6 @@ self.addEventListener('message', listener = function(e) {
     payment_request_resolver.reject(e.data);
   }
 });
-
-function handleOpenWindow(e) {
-  e.openWindow("https://gogerald.github.io/pr/bobpaywebapp/pay")
-    .catch(function(err) {
-    payment_request_resolver.reject(err);
-  })
-}
 
 function sendPaymentRequest() {
   // Note that we do not use the returned window_client through openWindow since
