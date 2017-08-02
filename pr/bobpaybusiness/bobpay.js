@@ -8,7 +8,7 @@ self.addEventListener('paymentrequest', function(e) {
   payment_request_resolver = new PromiseResolver();
   e.respondWith(payment_request_resolver.promise);
   
-  e.openWindow("https://gogerald.github.io/pr/bobpaywebapp/pay")
+  e.openWindow("https://gogerald.github.io/pr/bobpaybusiness/pay")
     .catch(function(err) {
     payment_request_resolver.reject(err);
   })
