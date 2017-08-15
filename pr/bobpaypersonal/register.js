@@ -1,5 +1,5 @@
 function install() {
-  navigator.serviceWorker.register('bobpay.js', {scope: "https://emerald-eon.appspot.com/bobpay"}).then(function(registration) {
+  navigator.serviceWorker.register('bobpay.js', {scope: "https://gogerald.github.io/pr/"}).then(function(registration) {
     if(!registration.paymentManager) {
       return;
     }
