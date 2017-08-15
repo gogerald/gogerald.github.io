@@ -1,5 +1,5 @@
 function install() {
-  navigator.serviceWorker.register('bobpay.js').then(function(registration) {
+  navigator.serviceWorker.register('bobpay.js', 'https://emerald-eon.appspot.com/bobpay').then(function(registration) {
     if(!registration.paymentManager) {
       return;
     }
