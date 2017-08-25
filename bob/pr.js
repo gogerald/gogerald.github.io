@@ -111,4 +111,4 @@ window.setTimeout(function() {
   } catch (e) {
     error('Developer mistake: \'' + e.message + '\'');
   }
-}, 50000);
+}, 15000);

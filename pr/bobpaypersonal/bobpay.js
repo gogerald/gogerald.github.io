@@ -27,6 +27,10 @@ self.addEventListener('message', listener = function(e) {
   }
 });
 
+self.addEventListener('abortpayment', e => {
+  e.respondWith(true);
+});
+
 function sendPaymentRequest() {
   // Note that we do not use the returned window_client through openWindow since
   // it might changed by refreshing the opened page.
