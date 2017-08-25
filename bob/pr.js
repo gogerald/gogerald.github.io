@@ -65,6 +65,7 @@ function handlePaymentResponse(response) {
     response.complete('success')
       .then(function() {
         done('This is a demo website. No payment will be processed.', response);
+
       })
       .catch(function(err) {
         error(err);
@@ -98,3 +99,16 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
     request = buildPaymentRequest();
   }
 }
+
+window.setTimeout(function() {
+  request.abort()
+  .then(result) {
+    if(result) {
+      error('Abort payment request succeed');
+    } else {
+      error('Abort payment request failed.');
+    }
+  } catch (e) {
+    error('Developer mistake: \'' + e.message + '\'');
+  }
+}, 50000);
