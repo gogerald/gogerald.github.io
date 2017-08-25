@@ -101,13 +101,15 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
 }
 
 window.setTimeout(function() {
-  request.abort()
-  .then(result) {
-    if(result) {
-      error('Abort payment request succeed');
-    } else {
-      error('Abort payment request failed.');
-    }
+  try {
+    request.abort()
+    .then(result) {
+      if(result) {
+        error('Abort payment request succeed');
+      } else {
+        error('Abort payment request failed.');
+      }
+    } 
   } catch (e) {
     error('Developer mistake: \'' + e.message + '\'');
   }
