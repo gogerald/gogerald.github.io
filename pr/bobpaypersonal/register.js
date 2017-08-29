@@ -4,7 +4,7 @@ function install() {
       return;
     }
 
-    registration.paymentManager.userHint = 'this is a test userHint';
+    registration.paymentManager.userHint = 'gogerald@google.com';
     addInstruments(registration);
   }).catch(function(error) {
     alert("error: " + error);
