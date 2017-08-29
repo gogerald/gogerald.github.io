@@ -4,6 +4,7 @@ function install() {
       return;
     }
     addInstruments(registration);
+    registration.paymentManager.userHint = 'gogerald@google.com';
   }).catch(function(error) {
     alert("error: " + error);
   });
