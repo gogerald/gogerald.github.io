@@ -3,6 +3,8 @@ function install() {
     if(!registration.paymentManager) {
       return;
     }
+
+    registration.paymentManager.userHint = 'this is a test userHint';
     addInstruments(registration);
   }).catch(function(error) {
     alert("error: " + error);
