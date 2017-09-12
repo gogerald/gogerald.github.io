@@ -2,7 +2,7 @@
   "short_name": "Bobpay personal web app",
   "name": "Personal Bobpay",
   "icons": [{
-  	"src": "images/bobpay.png",
+  	"src": "images/failed/bobpay.png",
   	"sizes": "32x32",
   	"type": "image/png"
   }]
