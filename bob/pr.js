@@ -22,6 +22,18 @@ function buildPaymentRequest() {
         value: '55.00',
       },
     },
+    modifiers: [{
+      supportedMethods: ['https://emerald-eon.appspot.com/bobpay'],
+      total: {
+        label: 'Total',
+        amount: {currency: 'USD', value: '4.00'},
+      },
+      additionalDisplayItems: [{
+        label: 'BobPay discount',
+        amount: {currency: 'USD', value: '-1.00'},
+      }],
+      data: {discountProgramParticipantId: '86328764873265'},
+    }],
     displayItems: [{
       label: 'Original donation amount',
       amount: {
@@ -65,7 +77,6 @@ function handlePaymentResponse(response) {
     response.complete('success')
       .then(function() {
         done('This is a demo website. No payment will be processed.', response);
-
       })
       .catch(function(err) {
         error(err);
