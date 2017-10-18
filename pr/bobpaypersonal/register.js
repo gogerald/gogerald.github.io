@@ -29,6 +29,21 @@ function addInstruments(registration) {
         ],
         enabledMethods: ["https://emerald-eon.appspot.com/bobpay"]
       }),
+    registration.paymentManager.instruments.set(
+      '12345',
+      {
+        name: "Visa ****1111",
+        icons: [{
+          src: 'images/visa.png',
+          sizes: '32x32',
+          type: 'image/png'
+        }],
+        enabledMethods: ['basic-card'],
+        capabilities: {
+          supportedNetworks: ['visa']
+          supportedTypes: ['credit']
+        }
+      }),
     ];
 
     return Promise.all(instrumentPromises);
