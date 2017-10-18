@@ -34,14 +34,14 @@ function addInstruments(registration) {
       {
         name: "Visa ****1111",
         icons: [{
-          src: 'images/visa.png',
+          src: "images/visa.png",
           sizes: '32x32',
           type: 'image/png'
         }],
-        enabledMethods: ['basic-card'],
+        enabledMethods: ["basic-card"],
         capabilities: {
-          supportedNetworks: ['visa']
-          supportedTypes: ['credit']
+          supportedNetworks: ["visa"],
+          supportedTypes: ["credit"]
         }
       }),
     ];
