@@ -12,7 +12,7 @@ function install() {
 
 function addInstruments(registration) {
   const instrumentPromises = [
-    /*registration.paymentManager.instruments.set(
+    registration.paymentManager.instruments.set(
       "c8126178-3bba-4d09-8f00-0771bcfd3b11",
       {
         name: "My Bob Pay Account: gogerald@google.com",
@@ -27,8 +27,8 @@ function addInstruments(registration) {
           type:"image/png"}
         ],
         enabledMethods: ["https://emerald-eon.appspot.com/bobpay"]
-      }),*/
-    registration.paymentManager.instruments.set(
+      }),
+    /*registration.paymentManager.instruments.set(
       "c8126178-3bba-4d09-8f00-0771bcfd3b12",
       {
         name: "My visa card 4012 *** *** *** 1881",
@@ -47,7 +47,7 @@ function addInstruments(registration) {
           supportedNetworks: ['visa'],
           supportedTypes: ['credit']
         }
-      }),
+      }),*/
     ];
 
     return Promise.all(instrumentPromises);
