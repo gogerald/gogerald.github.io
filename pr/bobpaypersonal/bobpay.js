@@ -20,11 +20,7 @@ self.addEventListener('message', listener = function(e) {
     return;
   }
 
-  if(e.data.methodName) {
-    payment_request_resolver.resolve(e.data);
-  } else {
-    payment_request_resolver.reject(e.data);
-  }
+  payment_request_resolver.resolve(e.data);
 });
 
 self.addEventListener('canmakepayment', function(e) {
