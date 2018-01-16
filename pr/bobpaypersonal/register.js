@@ -54,10 +54,10 @@ function addInstruments(registration) {
   function finishInstallation(succeed) {
     var para = document.createElement("p");
     var node = document.createTextNode("The service worker has been successfully installed.");
-    node.setAttribute("id", "success");
+    node.id = "success";
     if(!succeed) {
       node = document.createTextNode("Failed to install the service worker.");
-      node.setAttribute("id", "fail");
+      node.id = "fail";
     }
     para.appendChild(node);
 
