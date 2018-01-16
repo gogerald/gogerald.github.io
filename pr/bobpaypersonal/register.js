@@ -6,8 +6,10 @@ function install() {
 
     registration.paymentManager.userHint = 'gogerald@google.com';
     addInstruments(registration);
+    finishInstallation(true);
   }).catch(function(error) {
     alert("error: " + error);
+    finishInstallation(false);
   });
 }
 
@@ -48,3 +50,15 @@ function addInstruments(registration) {
 
     return Promise.all(instrumentPromises);
   };
+
+  function finishInstallation(succeed) {
+    var para = document.createElement("p");
+    var node = document.createTextNode("The service worker has been successfully installed.");
+    if(!succeed) {
+      node = document.createTextNode("Failed to install the service worker.");
+    }
+    para.appendChild(node);
+
+    var element = document.getElementById("installation_result");
+    window.location.href = "#installation_result";
+  }
