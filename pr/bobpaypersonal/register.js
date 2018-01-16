@@ -5,8 +5,9 @@ function install() {
     }
 
     registration.paymentManager.userHint = 'gogerald@google.com';
-    addInstruments(registration);
-    finishInstallation(true);
+    addInstruments(registration)
+    .then( function() { finishInstallation(true); })
+    .catch( function() { finishInstallation(false); });
   }).catch(function(error) {
     alert("error: " + error);
     finishInstallation(false);
