@@ -54,11 +54,19 @@ function addInstruments(registration) {
   function finishInstallation(succeed) {
     var para = document.createElement("p");
     var node = document.createTextNode("The service worker has been successfully installed.");
+    node.setAttribute("id", "success");
     if(!succeed) {
       node = document.createTextNode("Failed to install the service worker.");
+      node.setAttribute("id", "fail");
     }
     para.appendChild(node);
 
     var element = document.getElementById("installation_result");
-    window.location.href = "#installation_result";
+    element.appendChild(para);
+
+    if(succeed) {
+      window.location.href = "#success";
+    } else {
+      window.location.href = "#fail";
+    }
   }
