@@ -8,7 +8,7 @@
   }],
   "serviceworker": {
     "src": "bobpay.js",
-    "scope": "/pay",
+    "scope": "pay",
     "use_cache": false
   }
 }
