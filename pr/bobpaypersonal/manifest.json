@@ -5,5 +5,10 @@
   	"src": "images/bobpay.png",
   	"sizes": "32x32",
   	"type": "image/png"
-  }]
+  }],
+  "serviceworker": {
+    "src": "bobpay.js",
+    "scope": "/pay",
+    "use_cache": false
+  }
 }
