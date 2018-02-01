@@ -28,7 +28,7 @@ self.addEventListener('message', listener = function(e) {
 });
 
 self.addEventListener('canmakepayment', function(e) {
-   e.respondWith(false);
+   e.respondWith(true);
 });
   
 self.addEventListener('abortpayment', e => {
