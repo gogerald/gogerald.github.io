@@ -2,57 +2,23 @@
 
 <html lang="en">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#db5945">
-    <title>You are paying with BobPay</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
-
-    <!-- Theme CSS -->
-    <link href="/css/new-age.min.css" rel="stylesheet">
+    <meta name = "viewport" content="width=device-width, initial-scale=1">
   </head>
-
+  
   <body>
-      <div class="container">
-          <h1>Welcome to the BobPay Payment Handler</h1>
-          <h3>Here are some (not all) of the details we got</h3>
-          <pre style="white-space: pre-wrap;" id="details"></pre>
-      </div>
-
-      <div class="container">
-        <button id="pay" type="button" class="btn btn-primary" onclick="pay()">Pay</button>
-        <button id="cancel" type="button" class="btn btn-default" onclick="cancel()">Cancel</button>
-      </div>
-
-    <script>
-    let paymentRequestClient;
-    navigator.serviceWorker.addEventListener('message', e => {
-      paymentRequestClient = e.source;
-      document.getElementById('details').innerHTML = JSON.stringify(e.data, undefined, 2);
-    });
-    navigator.serviceWorker.controller.postMessage('payment_app_window_ready');
-    function pay() {
-      if(!paymentRequestClient) return;
-      var paymentAppResponse = {
-        methodName: "https://emerald-eon.appspot.com/bobpay",
-        details: {
-          id: "123456"
-        }
-      };
-      paymentRequestClient.postMessage(paymentAppResponse);
-      window.close();
-    }
-    function cancel() {
-      if(!paymentRequestClient) return;
-      paymentRequestClient.postMessage("The payment request is cancelled by user");
-      window.close();
-    }
-    </script>
+    <header>
+      <h1> Websites </h1>
+    </header>
+    
+    <hr>
+    
+    <ul>
+      <li>
+        <a href="pr"> Web payments </a>
+      </li>
+      <li>
+        <a href="sw"> Service worker </a>
+      </li>
+    </ul>
   </body>
 </html>
