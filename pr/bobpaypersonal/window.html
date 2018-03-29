@@ -108,7 +108,7 @@
       }
      return "";
     }
-    function checkCookie() {
+    async function checkCookie() {
       var user = getCookie("username");
       if (user != "") {
         document.getElementById("summary").style.display="block";
@@ -119,7 +119,7 @@
         document.getElementById("login-account").style.display="block";
         
         install();
-        navigator.serviceWorker.getRegistration().then(function(registration) {
+        await navigator.serviceWorker.getRegistration().then(function(registration) {
           if (!registration && !registration.paymentManager){
             registration.paymentManager.userHint=user;
           }
@@ -132,7 +132,7 @@
         document.getElementById("login-account").style.display="none";
         
         install();
-        navigator.serviceWorker.getRegistration().then(function(registration) {
+        await navigator.serviceWorker.getRegistration().then(function(registration) {
           if (!registration && !registration.paymentManager){
             registration.paymentManager.userHint="";
           }
@@ -143,12 +143,13 @@
       document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       checkCookie();
     }
-    function install() {
-      navigator.serviceWorker.register('/pay/bobpay.js').then(function(registration) {
+    async function install() {
+      await navigator.serviceWorker.register('pay/bobpay.js').then(function(registration) {
         if(!registration.paymentManager) {
           return;
         }
-        navigator.serviceWorker.getRegistration('pay/').then(function(registration) {
+        
+        await navigator.serviceWorker.getRegistration('pay/').then(function(registration) {
           if (!registration && !registration.paymentManager){
             registration.paymentManager.userHint=user;
           }
