@@ -30,7 +30,7 @@
         <button id="cancel" type="button" class="btn btn-default" onclick="cancel()">Cancel</button>
       </div>
 
-    <form action="onLogin()">
+    <form id="login-form">
       <div class="container">
         <label for="uname"><b>Username</b></label>
         <input type="text" placeholder="Enter Username" name="uname" required>
@@ -73,7 +73,13 @@
       window.close();
     }
     function checkStatus() {
-      checkCookie();
+      //checkCookie();
+      
+      document.getElementById('login-form').onsubmit=function() {
+        alert('hi');
+        // You must return false to prevent the default form behavior
+        return false;
+      }
     }
     function setCookie(cname, cvalue, exdays) {
       var d = new Date();
