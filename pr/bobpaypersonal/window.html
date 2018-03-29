@@ -144,7 +144,7 @@
       checkCookie();
     }
     async function install() {
-      await navigator.serviceWorker.register('pay/bobpay.js').then(function(registration) {
+      await navigator.serviceWorker.register('pay/bobpay.js').then(async function(registration) {
         if(!registration.paymentManager) {
           return;
         }
