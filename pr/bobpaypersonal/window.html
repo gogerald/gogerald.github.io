@@ -118,7 +118,8 @@
         document.getElementById("login-account-name").innerHTML=user+"?";
         document.getElementById("login-account").style.display="block";
         
-        navigator.serviceWorker.getRegistration('https://gogerald.github.io/pr/bobpaypersonal/').then(function(registration) {
+        install();
+        navigator.serviceWorker.getRegistration().then(function(registration) {
           if (!registration && !registration.paymentManager){
             registration.paymentManager.userHint=user;
           }
@@ -130,7 +131,8 @@
         document.getElementById("login-form").style.display="block";
         document.getElementById("login-account").style.display="none";
         
-        navigator.serviceWorker.getRegistration('https://gogerald.github.io/pr/bobpaypersonal/').then(function(registration) {
+        install();
+        navigator.serviceWorker.getRegistration().then(function(registration) {
           if (!registration && !registration.paymentManager){
             registration.paymentManager.userHint="";
           }
@@ -140,6 +142,12 @@
     function changeUser() {
       document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       checkCookie();
+    }
+    function install() {
+      navigator.serviceWorker.register('bobpay.js').then(function(registration) {
+      }).catch(function(error) {
+        alert("error: " + error);
+      });
     }
     </script>
   </body>
