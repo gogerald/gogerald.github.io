@@ -46,6 +46,10 @@
         <button type="submit" class="btn btn-primary">Login</button>
       </div>
     </form>
+    
+    <div id="error-msg" class="container" style="color:red;display=none;">
+      <p>Incorrect user name or password.</p>
+    </div>
     <script>
     let paymentRequestClient;
     navigator.serviceWorker.addEventListener('message', e => {
@@ -71,8 +75,12 @@
     }
     function checkStatus() {      
       document.getElementById("login-form").onsubmit=function() {
-        alert(document.getElementById("username").value);
-        setCookie("username", "test@gmail.com", 1);
+        if(document.getElementById("username").value.length < 5) {
+          document.getElementById("error-msg").style.display="block";
+        } else {
+          document.getElementById("error-msg").style.display="none";
+          setCookie("username", document.getElementById("username").value, 1);
+        }
         checkCookie();
         // You must return false to prevent the default form behavior
         return false;
