@@ -30,7 +30,7 @@
         <button id="cancel" type="button" class="btn btn-default" onclick="cancel()">Cancel</button>
       </div>
 
-    <form action="action_page.php">
+    <form action="onLogin()">
       <div class="container">
         <label for="uname"><b>Username</b></label>
         <input type="text" placeholder="Enter Username" name="uname" required>
@@ -105,6 +105,9 @@
             setCookie("username", user, 365);
         }
       }
+    }
+    function onLogin() {
+      preventDefault();
     }
     </script>
   </body>
