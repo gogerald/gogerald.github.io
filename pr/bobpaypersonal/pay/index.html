@@ -21,7 +21,7 @@
   <body onload="checkStatus()">      
       <div class="container">
           <h1>Welcome to the BobPay Payment Handler</h1>
-          <p id="login-account" align="center">Pay with <span style="color:blue;font-weight:bold;text-decoration:underline">test@gmail.com</span></p>
+          <p id="login-account" align="center">Pay with <span style="color:blue;font-weight:bold;text-decoration:underline" onclick="changeUser()">test@gmail.com</span></p>
       </div>
     
       <div class="container">
@@ -85,9 +85,7 @@
         checkCookie();
         // You must return false to prevent the default form behavior
         return false;
-      }
-      
-      document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      }      
       checkCookie();
     }
     function setCookie(cname, cvalue, exdays) {
@@ -117,12 +115,19 @@
         document.getElementById("summary-details").style.display="block";
         document.getElementById("pay-buttons").style.display="block";
         document.getElementById("login-form").style.display="none";
+        document.getElementByIf("login-account").value=user;
+        document.getElementByIf("login-account").style.display="block";
       } else {
         document.getElementById("summary").style.display="none";
         document.getElementById("summary-details").style.display="none";
         document.getElementById("pay-buttons").style.display="none";
         document.getElementById("login-form").style.display="block";
+        document.getElementByIf("login-account").style.display="none";
       }
+    }
+    function changeUser() {
+      document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      checkCookie();
     }
     </script>
   </body>
