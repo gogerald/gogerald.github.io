@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#db5945">
+    <title>You are paying with BobPay</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="/css/new-age.min.css" rel="stylesheet">
+  </head>
+
+  <body onload="checkStatus()">      
+      <div class="container">
+          <h1>Welcome to the BobPay Payment Handler</h1>
+          <p id="login-account" align="center">Pay with <span id="login-account-name" style="color:blue;font-weight:bold;text-decoration:underline" onclick="changeUser()">test@gmail.com</span></p>
+      </div>
+    
+      <div class="container">
+          <h3 id="summary">Here are some (not all) of the details we got</h3>
+          <pre style="white-space: pre-wrap;" id="summary-details"></pre>
+      </div>
+
+      <div id="pay-buttons" class="container">
+        <button id="pay" type="button" class="btn btn-primary" onclick="pay()">Pay</button>
+        <button id="cancel" type="button" class="btn btn-default" onclick="cancel()">Cancel</button>
+      </div>
+
+    <form id="login-form">
+      <div class="container">
+        <label for="uname"><b>Username</b></label>
+        <input id="username" type="text" placeholder="Enter Username" name="uname" required>
+        
+        <br>
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+        
+        <br>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </div>
+    </form>
+    
+    <div id="error-msg" class="container" style="color:red;display:none;">
+      <p>Incorrect user name or password.</p>
+    </div>
+    <script>
+    let paymentRequestClient;
+    navigator.serviceWorker.addEventListener('message', e => {
+      paymentRequestClient = e.source;
+      document.getElementById('summary-details').innerHTML = JSON.stringify(e.data, undefined, 2);
+    });
+    navigator.serviceWorker.controller.postMessage('payment_app_window_ready');
+    function pay() {
+      if(!paymentRequestClient) return;
+      var paymentAppResponse = {
+        methodName: "https://emerald-eon.appspot.com/bobpay",
+        details: {
+          id: getCookie("username"),
+        }
+      };
+      paymentRequestClient.postMessage(paymentAppResponse);
+      window.close();
+    }
+    function cancel() {
+      if(!paymentRequestClient) return;
+      paymentRequestClient.postMessage("The payment request is cancelled by user");
+      window.close();
+    }
+    function checkStatus() {      
+      document.getElementById("login-form").onsubmit=function() {
+        if(document.getElementById("username").value.length < 5) {
+          document.getElementById("error-msg").style.display="block";
+        } else {
+          document.getElementById("error-msg").style.display="none";
+          setCookie("username", document.getElementById("username").value, 1);
+        }
+        checkCookie();
+        // You must return false to prevent the default form behavior
+        return false;
+      }      
+      checkCookie();
+    }
+    function setCookie(cname, cvalue, exdays) {
+      var d = new Date();
+      d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+      var expires = "expires="+d.toUTCString();
+      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+    function getCookie(cname) {
+      var name = cname + "=";
+      var ca = document.cookie.split(';');
+      for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+      }
+     return "";
+    }
+    function checkCookie() {
+      var user = getCookie("username");
+      if (user != "") {
+        document.getElementById("summary").style.display="block";
+        document.getElementById("summary-details").style.display="block";
+        document.getElementById("pay-buttons").style.display="block";
+        document.getElementById("login-form").style.display="none";
+        document.getElementById("login-account-name").innerHTML=user+"?";
+        document.getElementById("login-account").style.display="block";
+        
+        navigator.serviceWorker.getRegistration().then(function(registration) {
+          if (!registration && !registration.paymentManager){
+            registration.paymentManager.userHint=user;
+          }
+        });
+      } else {
+        document.getElementById("summary").style.display="none";
+        document.getElementById("summary-details").style.display="none";
+        document.getElementById("pay-buttons").style.display="none";
+        document.getElementById("login-form").style.display="block";
+        document.getElementById("login-account").style.display="none";
+        
+        navigator.serviceWorker.getRegistration().then(function(registration) {
+          if (!registration && !registration.paymentManager){
+            registration.paymentManager.userHint="";
+          }
+        });
+      }
+    }
+    function changeUser() {
+      document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      checkCookie();
+    }
+    </script>
+  </body>
+</html>
