@@ -36,7 +36,7 @@
     <form id="login-form">
       <div class="container">
         <label for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required>
+        <input id="username" type="text" placeholder="Enter Username" name="uname" required>
         
         <br>
         <label for="psw"><b>Password</b></label>
@@ -70,7 +70,8 @@
       window.close();
     }
     function checkStatus() {      
-      document.getElementById('login-form').onsubmit=function() {
+      document.getElementById("login-form").onsubmit=function() {
+        Alert(document.getElementById("username").value);
         setCookie("username", "test@gmail.com", 1);
         checkCookie();
         // You must return false to prevent the default form behavior
