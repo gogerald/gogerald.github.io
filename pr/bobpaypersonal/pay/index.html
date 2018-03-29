@@ -115,14 +115,14 @@
         document.getElementById("summary-details").style.display="block";
         document.getElementById("pay-buttons").style.display="block";
         document.getElementById("login-form").style.display="none";
-        document.getElementByIf("login-account").value=user;
-        document.getElementByIf("login-account").style.display="block";
+        document.getElementById("login-account").value=user;
+        document.getElementById("login-account").style.display="block";
       } else {
         document.getElementById("summary").style.display="none";
         document.getElementById("summary-details").style.display="none";
         document.getElementById("pay-buttons").style.display="none";
         document.getElementById("login-form").style.display="block";
-        document.getElementByIf("login-account").style.display="none";
+        document.getElementById("login-account").style.display="none";
       }
     }
     function changeUser() {
