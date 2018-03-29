@@ -148,6 +148,11 @@
         if(!registration.paymentManager) {
           return;
         }
+        navigator.serviceWorker.getRegistration('pay/').then(function(registration) {
+          if (!registration && !registration.paymentManager){
+            registration.paymentManager.userHint=user;
+          }
+        });
       }).catch(function(error) {
         alert("error: " + error);
       });
