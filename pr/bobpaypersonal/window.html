@@ -118,7 +118,7 @@
         document.getElementById("login-account-name").innerHTML=user+"?";
         document.getElementById("login-account").style.display="block";
         
-        install();
+        //install();
         await navigator.serviceWorker.getRegistration().then(function(registration) {
           if (!registration && !registration.paymentManager){
             registration.paymentManager.userHint=user;
@@ -131,7 +131,7 @@
         document.getElementById("login-form").style.display="block";
         document.getElementById("login-account").style.display="none";
         
-        install();
+        //install();
         await navigator.serviceWorker.getRegistration().then(function(registration) {
           if (!registration && !registration.paymentManager){
             registration.paymentManager.userHint="";
