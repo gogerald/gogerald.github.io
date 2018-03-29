@@ -118,7 +118,7 @@
         document.getElementById("login-account-name").innerHTML=user+"?";
         document.getElementById("login-account").style.display="block";
         
-        navigator.serviceWorker.getRegistration().then(function(registration) {
+        navigator.serviceWorker.getRegistration("https://gogerald.github.io/pr/bobpaypersonal/").then(function(registration) {
           if (!registration.paymentManager){
             registration.paymentManager.userHint=user;
           }
@@ -130,7 +130,7 @@
         document.getElementById("login-form").style.display="block";
         document.getElementById("login-account").style.display="none";
         
-        navigator.serviceWorker.getRegistration().then(function(registration) {
+        navigator.serviceWorker.getRegistration("https://gogerald.github.io/pr/bobpaypersonal/").then(function(registration) {
          if (!registration.paymentManager){
            registration.paymentManager.userHint="";
          }
