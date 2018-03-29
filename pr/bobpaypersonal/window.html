@@ -120,7 +120,7 @@
         
         //install();
         await navigator.serviceWorker.getRegistration().then(function(registration) {
-          if(registration == undefine) return;
+          if(registration == undefined) return;
           if (registration.paymentManager){
             registration.paymentManager.userHint=user;
           }
@@ -134,7 +134,7 @@
         
         //install();
         await navigator.serviceWorker.getRegistration().then(function(registration) {
-          if(registration == undefine) return;
+          if(registration == undefined) return;
           if (registration.paymentManager){
             registration.paymentManager.userHint="";
           }
@@ -144,21 +144,6 @@
     function changeUser() {
       document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       checkCookie();
-    }
-    async function install() {
-      await navigator.serviceWorker.register('pay/bobpay.js').then(async function(registration) {
-        if(!registration.paymentManager) {
-          return;
-        }
-        
-        await navigator.serviceWorker.getRegistration('pay/').then(function(registration) {
-          if (!registration && !registration.paymentManager){
-            registration.paymentManager.userHint=user;
-          }
-        });
-      }).catch(function(error) {
-        alert("error: " + error);
-      });
     }
     </script>
   </body>
