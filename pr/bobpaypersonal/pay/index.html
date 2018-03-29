@@ -63,7 +63,7 @@
       var paymentAppResponse = {
         methodName: "https://emerald-eon.appspot.com/bobpay",
         details: {
-          id: "123456"
+          id: getCookie("username"),
         }
       };
       paymentRequestClient.postMessage(paymentAppResponse);
@@ -117,24 +117,12 @@
         document.getElementById("login-form").style.display="none";
         document.getElementById("login-account-name").innerHTML=user+"?";
         document.getElementById("login-account").style.display="block";
-        
-        navigator.serviceWorker.getRegistration("https://gogerald.github.io/pr/bobpaypersonal/").then(function(registration) {
-          if (!registration.paymentManager){
-            registration.paymentManager.userHint=user;
-          }
-        });
       } else {
         document.getElementById("summary").style.display="none";
         document.getElementById("summary-details").style.display="none";
         document.getElementById("pay-buttons").style.display="none";
         document.getElementById("login-form").style.display="block";
         document.getElementById("login-account").style.display="none";
-        
-        navigator.serviceWorker.getRegistration("https://gogerald.github.io/pr/bobpaypersonal/").then(function(registration) {
-         if (!registration.paymentManager){
-           registration.paymentManager.userHint="";
-         }
-       });
       }
     }
     function changeUser() {
