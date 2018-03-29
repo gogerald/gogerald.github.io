@@ -120,7 +120,7 @@
         
         //install();
         await navigator.serviceWorker.getRegistration().then(function(registration) {
-          if (!registration && !registration.paymentManager){
+          if (!registration && registration.paymentManager){
             registration.paymentManager.userHint=user;
           }
         });
@@ -133,7 +133,7 @@
         
         //install();
         await navigator.serviceWorker.getRegistration().then(function(registration) {
-          if (!registration && !registration.paymentManager){
+          if (!registration && registration.paymentManager){
             registration.paymentManager.userHint="";
           }
         });
