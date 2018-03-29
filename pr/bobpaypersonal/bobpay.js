@@ -21,6 +21,11 @@ self.addEventListener('message', listener = function(e) {
   }
 
   if(e.data.methodName) {
+      navigator.serviceWorker.getRegistration().then(function(registration) {
+        if (!registration.paymentManager){
+          registration.paymentManager.userHint=e.data.details.id;
+        }
+      });
       payment_request_resolver.resolve(e.data);
   } else {
       payment_request_resolver.reject(e.data);
