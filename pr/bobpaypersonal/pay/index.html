@@ -70,14 +70,14 @@
       paymentRequestClient.postMessage("The payment request is cancelled by user");
       window.close();
     }
-    function checkStatus() {
-      //checkCookie();
-      
+    function checkStatus() {      
       document.getElementById('login-form').onsubmit=function() {
         alert('hi');
         // You must return false to prevent the default form behavior
         return false;
       }
+      
+      checkCookie();
     }
     function setCookie(cname, cvalue, exdays) {
       var d = new Date();
