@@ -120,9 +120,7 @@
         
         //install();
         await navigator.serviceWorker.getRegistration().then(function(registration) {
-          if(registration == undefine) {
-            return;
-          }
+          if(registration == undefine) return;
           if (registration.paymentManager){
             registration.paymentManager.userHint=user;
           }
@@ -136,9 +134,7 @@
         
         //install();
         await navigator.serviceWorker.getRegistration().then(function(registration) {
-          if(registration == undefine) {
-            return;
-          }
+          if(registration == undefine) return;
           if (registration.paymentManager){
             registration.paymentManager.userHint="";
           }
