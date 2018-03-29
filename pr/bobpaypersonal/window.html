@@ -33,20 +33,22 @@
         <button id="pay" type="button" class="btn btn-primary" onclick="pay()">Pay</button>
         <button id="cancel" type="button" class="btn btn-default" onclick="cancel()">Cancel</button>
       </div>
+    
+    <div>
+      <form id="login-form">
+        <div class="container">
+          <label for="uname"><b>Username</b></label>
+          <input id="username" type="text" placeholder="Enter Username" name="uname" required>
 
-    <form id="login-form">
-      <div class="container">
-        <label for="uname"><b>Username</b></label>
-        <input id="username" type="text" placeholder="Enter Username" name="uname" required>
-        
-        <br>
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
-        
-        <br>
-        <button type="submit" class="btn btn-primary">Login</button>
-      </div>
-    </form>
+          <br>
+          <label for="psw"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="psw" required>
+
+          <br>
+          <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+      </form>
+    </div>
     
     <div id="error-msg" class="container" style="color:red;display:none;">
       <p>Incorrect user name or password.</p>
