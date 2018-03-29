@@ -118,10 +118,10 @@
         document.getElementById("login-account-name").innerHTML=user+"?";
         document.getElementById("login-account").style.display="block";
         
-        await navigator.serviceWorker.getRegistration().then(async function(registration) {
+        await navigator.serviceWorker.getRegistration().then(function(registration) {
           if(registration == undefined) return;
           if (registration.paymentManager){
-            await registration.paymentManager.userHint=user;
+            registration.paymentManager.userHint=user;
           }
         });
       } else {
@@ -131,10 +131,10 @@
         document.getElementById("login-form").style.display="block";
         document.getElementById("login-account").style.display="none";
         
-        await navigator.serviceWorker.getRegistration().then(async function(registration) {
+        await navigator.serviceWorker.getRegistration().then(function(registration) {
           if(registration == undefined) return;
           if (registration.paymentManager){
-            await registration.paymentManager.userHint="";
+            registration.paymentManager.userHint="";
           }
         });
       }
