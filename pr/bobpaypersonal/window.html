@@ -144,7 +144,10 @@
       checkCookie();
     }
     function install() {
-      navigator.serviceWorker.register('bobpay.js').then(function(registration) {
+      navigator.serviceWorker.register('/test/bobpay.js').then(function(registration) {
+        if(!registration.paymentManager) {
+          return;
+        }
       }).catch(function(error) {
         alert("error: " + error);
       });
