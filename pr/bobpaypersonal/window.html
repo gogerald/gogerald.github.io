@@ -33,6 +33,11 @@
         <button id="pay" type="button" class="btn btn-primary" onclick="pay()">Pay</button>
         <button id="cancel" type="button" class="btn btn-default" onclick="cancel()">Cancel</button>
       </div>
+      
+      </hr>
+      <div id="navigate-buttons" class="container">
+        <button id="badSsl" type="button" class="btn btn-default" onclick="badSsl()">Navigate to bad SSL page</button>
+      </div>
     
     <div id="login-form">
       <form>
@@ -75,6 +80,9 @@
       if(!paymentRequestClient) return;
       paymentRequestClient.postMessage("The payment request is cancelled by user");
       window.close();
+    }
+    function badSsl() {
+      window.location.href = "https://expired.badssl.com";
     }
     function checkStatus() {      
       document.getElementById("login-form").onsubmit=function() {
