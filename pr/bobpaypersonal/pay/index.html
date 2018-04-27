@@ -115,6 +115,7 @@
      return "";
     }
     function checkCookie() {
+      document.getElementById("nagivate-buttons").style.display="block";
       var user = getCookie("username");
       if (user != "") {
         document.getElementById("summary").style.display="block";
