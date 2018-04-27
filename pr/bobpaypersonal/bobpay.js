@@ -5,13 +5,13 @@ let payment_request_resolver = undefined;
 self.addEventListener('paymentrequest', function(e) {
   payment_request_event = e;
   
-  console.log(e.topLevelOrigin);
-  console.log(e.paymentRequestOrigin);
-  console.log(e.paymentRequestId);
-  console.log(JSON.stringify(e.methodData));
-  console.log(JSON.stringify(e.total));
-  console.log(JSON.stringify(e.modifiers));
-  console.log(e.instrumentKey);
+  alert(e.topLevelOrigin);
+  alert(e.paymentRequestOrigin);
+  alert(e.paymentRequestId);
+  alert(JSON.stringify(e.methodData));
+  alert(JSON.stringify(e.total));
+  alert(JSON.stringify(e.modifiers));
+  alert(e.instrumentKey);
   
   payment_request_resolver = new PromiseResolver();
   e.respondWith(payment_request_resolver.promise);
