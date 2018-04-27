@@ -11,6 +11,7 @@ function buildPaymentRequest() {
     supportedMethods: [
       'https://emerald-eon.appspot.com/bobpay',
     ],
+    data: {apiVersion: '86328764873265'},
   }];
 
   const details = {
