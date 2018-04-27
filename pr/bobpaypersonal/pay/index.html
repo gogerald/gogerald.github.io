@@ -34,7 +34,7 @@
         <button id="cancel" type="button" class="btn btn-default" onclick="cancel()">Cancel</button>
       </div>
       <div id="nagivate-buttons" class="container">
-        <button id="navigate" type="button" class="btn btn-default" onclick="badSsl()">Navigate to bad page </button>
+        <button id="navigate" type="button" class="btn btn-default" onclick="navigate()">Navigate to bad page </button>
       </div>
 
     <form id="login-form">
@@ -77,7 +77,7 @@
       paymentRequestClient.postMessage("The payment request is cancelled by user");
       window.close();
     }
-    function badSsl() {
+    function navigate() {
       window.location.href = ""https://expired.badssl.com/;
     }
     function checkStatus() {      
