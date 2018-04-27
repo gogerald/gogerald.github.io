@@ -5,14 +5,6 @@ let payment_request_resolver = undefined;
 self.addEventListener('paymentrequest', function(e) {
   payment_request_event = e;
   
-  alert(e.topLevelOrigin);
-  alert(e.paymentRequestOrigin);
-  alert(e.paymentRequestId);
-  alert(JSON.stringify(e.methodData));
-  alert(JSON.stringify(e.total));
-  alert(JSON.stringify(e.modifiers));
-  alert(e.instrumentKey);
-  
   payment_request_resolver = new PromiseResolver();
   e.respondWith(payment_request_resolver.promise);
   
@@ -68,7 +60,7 @@ function sendPaymentRequest() {
       //   'topLevelOrigin': payment_request_event.topLevelOrigin,
       //   'total': payment_request_event.total
       // };
-      clientList[i].postMessage(payment_request_event.total);
+      clientList[i].postMessage(payment_request_event);
     }
   });
 }
