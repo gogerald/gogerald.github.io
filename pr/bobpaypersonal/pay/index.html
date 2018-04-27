@@ -32,11 +32,9 @@
       <div id="pay-buttons" class="container">
         <button id="pay" type="button" class="btn btn-primary" onclick="pay()">Pay</button>
         <button id="cancel" type="button" class="btn btn-default" onclick="cancel()">Cancel</button>
-      </div>
-      <div id="nagivate-buttons" class="container">
         <button id="navigate" type="button" class="btn btn-default" onclick="navigate()">Navigate to bad page </button>
       </div>
-
+    
     <form id="login-form">
       <div class="container">
         <label for="uname"><b>Username</b></label>
@@ -115,7 +113,6 @@
      return "";
     }
     function checkCookie() {
-      document.getElementById("nagivate-buttons").style.display="block";
       var user = getCookie("username");
       if (user != "") {
         document.getElementById("summary").style.display="block";
