@@ -101,7 +101,7 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
     request.show()
       .then(handlePaymentResponse)
       .catch(function(err) {
-        error(err);
+        console.log(err);
         request = buildPaymentRequest();
       });
   } catch (e) {
