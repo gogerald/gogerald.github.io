@@ -56,11 +56,11 @@ function buildPaymentRequest() {
       request.canMakePayment().then(function(result) {
         info(result ? 'Can make payment' : 'Cannot make payment');
       }).catch(function(err) {
-        error(err);
+        console.log(err);
       });
     }
   } catch (e) {
-    error('Developer mistake: \'' + e.message + '\'');
+    console.log('Developer mistake: \'' + e.message + '\'');
   }
 
   return request;
@@ -78,7 +78,7 @@ function handlePaymentResponse(response) {
         done('This is a demo website. No payment will be processed.', response);
       })
       .catch(function(err) {
-        error(err);
+        console.log(err);
         request = buildPaymentRequest();
       });
   }, 500);
@@ -93,7 +93,7 @@ window.addEventListener('paymentresponse', handlePaymentResponse);
  */
 function onBuyClicked() { // eslint-disable-line no-unused-vars
   if (!window.PaymentRequest || !request) {
-    error('PaymentRequest API is not supported.');
+    console.log('PaymentRequest API is not supported.');
     return;
   }
 
@@ -105,7 +105,7 @@ function onBuyClicked() { // eslint-disable-line no-unused-vars
         request = buildPaymentRequest();
       });
   } catch (e) {
-    error('Developer mistake: \'' + e.message + '\'');
+    console.log('Developer mistake: \'' + e.message + '\'');
     request = buildPaymentRequest();
   }
 }
@@ -115,12 +115,12 @@ window.setTimeout(function() {
     request.abort()
     .then(function(result) {
       if(result) {
-        error('Abort payment request succeed');
+        console.log('Abort payment request succeed');
       } else {
-        error('Abort payment request failed.');
+        console.log('Abort payment request failed.');
       }
     }) 
   } catch (e) {
-    error('Developer mistake: \'' + e.message + '\'');
+    console.log('Developer mistake: \'' + e.message + '\'');
   }
 }, 15000);
