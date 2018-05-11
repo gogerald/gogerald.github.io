@@ -37,6 +37,7 @@
       <hr>
       <div id="navigate-buttons" class="container">
         <button id="badSsl" type="button" class="btn btn-default" onclick="badSsl()">Navigate to bad SSL page</button>
+        <button id="mixedcontent" type="button" class="btn btn-default" onclick="mixedContent()">Navigate to mixed content page</button>
         <button id="http" type="button" class="btn btn-default" onclick="http()">Navigate to http page</button>
       </div>
     
@@ -84,6 +85,9 @@
     }
     function badSsl() {
       window.location.href = "https://expired.badssl.com";
+    }
+    function mixedContent() {
+      window.location.href = "https://mixed.badssl.com";
     }
     function http() {
       window.location.href = "http://http.badssl.com";
