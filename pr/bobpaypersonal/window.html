@@ -39,6 +39,7 @@
         <button id="badSsl" type="button" class="btn btn-default" onclick="badSsl()">Navigate to bad SSL page</button>
         <button id="mixedcontent" type="button" class="btn btn-default" onclick="mixedContent()">Navigate to mixed content page</button>
         <button id="http" type="button" class="btn btn-default" onclick="http()">Navigate to http page</button>
+        <button id="permission" type="button" class="btn btn-default" onclick="permission()">Navigate to permissin page</button>
       </div>
     
     <div id="login-form">
@@ -91,6 +92,9 @@
     }
     function http() {
       window.location.href = "http://http.badssl.com";
+    }
+    function permission() {
+      window.location.href = "https://permission.site";
     }
     function checkStatus() {      
       document.getElementById("login-form").onsubmit=function() {
