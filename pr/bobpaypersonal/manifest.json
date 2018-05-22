@@ -1,6 +1,6 @@
 {
   "short_name": "Bobpay personal web app",
-  "name": "Just-In-Time Bobpay",
+  "name": "Pay with Bobpay",
   "icons": [{
   	"src": "images/bobpay.png",
   	"sizes": "32x32",
