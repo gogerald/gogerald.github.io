@@ -40,6 +40,7 @@
         <button id="mixedcontent" type="button" class="btn btn-default" onclick="mixedContent()">Navigate to mixed content page</button>
         <button id="http" type="button" class="btn btn-default" onclick="http()">Navigate to http page</button>
         <button id="permission" type="button" class="btn btn-default" onclick="permission()">Navigate to permissin page</button>
+        <button id="empty" type="button" class="btn btn-default" onclick="empty()">Navigate to empty page</button>
       </div>
     
     <div id="login-form">
@@ -95,6 +96,9 @@
     }
     function permission() {
       window.location.href = "https://permission.site";
+    }
+    function empty() {
+      window.location.href = "";
     }
     function checkStatus() {      
       document.getElementById("login-form").onsubmit=function() {
