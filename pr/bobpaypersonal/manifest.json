@@ -8,6 +8,7 @@
   }],
   "serviceworker": {
     "src": "bobpay.js",
+    "scope": "https://www.google.com/",
     "use_cache": false
   }
 }
