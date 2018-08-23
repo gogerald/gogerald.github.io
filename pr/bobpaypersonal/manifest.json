@@ -2,8 +2,8 @@
   "short_name": "Bobpay personal web app",
   "name": "Pay with Bobpay",
   "icons": [{
-  	"src": "images/test32.png",
-  	"sizes": "32x32",
+  	"src": "images/test128.png",
+  	"sizes": "128x128",
   	"type": "image/png"
   }],
   "serviceworker": {
