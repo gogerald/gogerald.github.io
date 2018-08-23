@@ -25,7 +25,7 @@ function addInstruments(registration) {
           sizes:"32x32",
           type:"image/png"}
         ],
-        method: "https://emerald-eon.appspot.com/bobpay"
+        method: "https://bobpay.xyz/pay"
       }),
     ];
 
