@@ -42,6 +42,7 @@
         <button id="http" type="button" class="btn btn-default" onclick="http()">Navigate to http page</button>
         <button id="permission" type="button" class="btn btn-default" onclick="permission()">Navigate to permissin page</button>
         <button id="empty" type="button" class="btn btn-default" onclick="empty()">Navigate to empty page</button>
+        <button id="popup" type="button" class="btn btn-default" onclick="popup()"> open a popup window</button>
       </div>
     
     <div id="login-form">
@@ -100,6 +101,9 @@
     }
     function empty() {
       window.location.href = "";
+    }
+    function popup() {
+      window.open('https://github.com/gogerald/gogerald.github.io','PopupWindow',width=600,height=300);
     }
     function checkStatus() {      
       document.getElementById("login-form").onsubmit=function() {
